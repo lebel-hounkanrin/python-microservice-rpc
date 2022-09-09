@@ -1,0 +1,26 @@
+syntax="proto3";
+
+enum BookCategory {
+    MYSTERY = 0;
+    SCIENCE_FICTION = 1;
+    SELF_HELP = 2;
+}
+
+message recommandationRequest {
+    int32 user_id =1;
+    BookCategory category = 2;
+    int32 max_result = 3;
+}
+
+message BookRecommandation {
+    int32 id=1;
+    string title = 2;
+}
+
+message recommandationResponse {
+    repeated BookRecommandation recommandations=1;
+}
+
+service Recommandations {
+    rpc Recommand (recommandationRequest) returns (recommandationResponse)
+}
